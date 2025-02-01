@@ -11,4 +11,4 @@ Friends/
 FFmpeg/
 
 # ignore files related to the credentials from google
-credentials.json
+*.json
