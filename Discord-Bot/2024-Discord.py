@@ -48,12 +48,6 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 friends_directory = 'Raspberry-4-Projects/Discord-Bot/Friends/'
 music_directory = 'Raspberry-4-Projects/Discord-Bot/music/'
 
-# Reading Rules from a text file.
-f = open('Raspberry-4-Projects/Discord-Bot/rules.txt', 'r')
-rules = f.readlines()
-with open('Raspberry-4-Projects/Discord-Bot/rules.txt') as f:
-   count = sum(1 for _ in f)
-
 #BOT PREFIX as in this is the symbol you must enter before a command. Ex .join .play
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all())
 
@@ -81,6 +75,12 @@ async def goodmorning(ctx):
 # This command displays the rules for the server.
 @bot.command(aliases=['rules'])
 async def rule(ctx,*,number):
+    # Reading Rules from a text file.
+    f = open('Raspberry-4-Projects/Discord-Bot/rules.txt', 'r')
+    rules = f.readlines()
+    with open('Raspberry-4-Projects/Discord-Bot/rules.txt') as f:
+        count = sum(1 for _ in f)
+
     # check if the rule number arguement is a numeric value.
     if (number.isnumeric()):
         if (int(number) < count+1):
@@ -95,9 +95,11 @@ async def rule(ctx,*,number):
         await ctx.send('I see you are trying to test my code... stop it.')
 
 #This command tells you what skin care you should use
-@bot.command()
+@bot.command(aliases=['skinroutine','skin'])
 async def skincare(ctx):
-    await ctx.send(file=discord.File('Raspberry-4-Projects/Discord-Bot/Skin_Care.png'))
+    f = open('Raspberry-4-Projects/Discord-Bot/Skin_Care.txt', 'r')
+    skin_routine = f.read()
+    await ctx.send(skin_routine)
 
 #This is just to show a picture of coconut. you can type .theboy or .cocoboy
 @bot.command(aliases=["theboy","cocoboy"])
