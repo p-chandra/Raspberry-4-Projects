@@ -1,0 +1,17 @@
+A Real-Time Processing Unit (RPU) is a processor designed to handle tasks that must be completed immediately within strict timing constraints. It ensures that data is processed as soon as it arrives, often within microseconds or milliseconds.
+
+An RPU is responsible for deterministic processing, meaning the system guarantees that operations happen within a predictable time limit.
+
+Typical responsibilities include:
+    Processing sensor data instantly
+    Controlling hardware devices
+    Handling real-time communication signals
+    Running control loops for machines
+
+Why Real-Time Processing Is Important
+In many systems, delays are unacceptable. If processing happens too late, the system may fail or behave incorrectly.
+
+Examples:
+    🚗 Autonomous vehicles must react immediately to obstacles.
+    🏭 Industrial robots must adjust movements in real time.
+    📡 Telecommunications systems must process signals instantly.

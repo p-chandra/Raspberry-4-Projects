@@ -1,0 +1,2 @@
+ARINC 653 applications (partitions) communicate with the underlying kernel or hypervisor via a standardized Application Executive (APEX) interface
+to access resources like memory and scheduling. The APEX interface facilitates inter-partition communication (ports) and intra-partition services (buffers, semaphores), ensuring strict partitioning and safety.
