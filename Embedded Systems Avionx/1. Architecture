@@ -43,7 +43,7 @@ The system allocates separate memory regions for each partition. EXAMPLE
 | Display        | 0x4000–0x5FFF |
 
 Hardware protection (via MMU/MPU) prevents a partition from accessing memory that isn’t assigned to it.
-
+```
 CPU
  └── ARINC-653 OS / Hypervisor
       ├── Partition A (Flight Control)
@@ -55,7 +55,7 @@ CPU
       │      └── Process 2
       │
       └── Partition C (Display)
-
+```
 
 # VMK180 Architecture with ARINC-653
 
@@ -103,6 +103,77 @@ The **ARINC-653 kernel** is responsible for:
 
 So the kernel is what enforces the ARINC-653 rules.
 
+# APEX Interface
+In ARINC 653, the Application Executive (APEX) interface is the standard API that applications use to interact with the ARINC 653 operating system.
+Think of it as the set of system calls that software inside a partition uses to talk to the ARINC OS kernel.
+
+Why APEX Exists
+Aircraft software is developed by many vendors. APEX ensures that:
+- Applications don’t depend on a specific RTOS
+- The same application can run on different ARINC-653 systems (like VxWorks 653 or INTEGRITY-178 tuMP)
+- Safety certification is easier
+So APEX provides a standardized programming interface.
+
+```
+Hardware
+     ↓
+ARINC 653 Kernel
+     ↓
+ARINC 653 OS
+     ↓
+APEX API - Device Drivers - Configuration Tools
+     ↓
+Application Code (Navigation, Display, Control)
+```
+
+| Category                 | Example Purpose                          |
+| ------------------------ | ---------------------------------------- |
+| **Process management**   | Create/start/suspend processes (threads) |
+| **Time management**      | Delays, periodic execution               |
+| **Partition management** | Control partition state                  |
+| **Communication**        | Send data to other partitions            |
+| **Synchronization**      | Semaphores, events                       |
+| **Health monitoring**    | Report faults                            |
+
 
 QUESTIONS I STILL HAVE
 USED in AVIONX(avionics) ARINC 653 applications (partitions) communicate with the underlying kernel or hypervisor via a standardized Application Executive (APEX) interface to access resources like memory and scheduling. The APEX interface facilitates inter-partition communication (ports) and intra-partition services (buffers, semaphores), ensuring strict partitioning and safety. 
+
+# What is an FPGA?
+An Field-Programmable Gate Array (FPGA) is a chip that can be configured to become custom digital hardware.
+
+Unlike a CPU that runs instructions sequentially, an FPGA implements hardware circuits that run in parallel. Instead of writing software, you describe hardware using languages like:
+- VHDL
+- Verilog
+After synthesis, the FPGA becomes a custom circuit.
+
+| Device | How it works                        |
+| ------ | ----------------------------------- |
+| CPU    | Executes instructions sequentially  |
+| GPU    | Many parallel processors            |
+| FPGA   | Custom hardware circuits you design |
+
+### System Flow = Data Path
+```
+Sensor
+   ↓
+FPGA (signal filtering / preprocessing)
+   ↓
+CPU running ARINC 653
+   ↓
+Partition: Navigation
+   ↓
+Partition: Display
+```
+
+### System Architecture
+```
+Hardware (VMK180)
+   ├─ CPU cores
+   │     └─ ARINC 653 OS
+   │           └─ Partitions
+   │                └─ Applications using APEX
+   │
+   └─ FPGA fabric
+         └─ Custom hardware accelerators
+```
