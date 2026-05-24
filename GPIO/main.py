@@ -17,8 +17,8 @@ counter = 0
 
 
 def take_picture():
-   picam.capture_file("/home/pi/Pictures/pi-camera/image.jpg")
-   cv2.imwrite('/home/pi/Pictures/webcam/image.jpg', image)
+   picam.capture_file("/home/p-c/Pictures/pi-camera/image.jpg")
+   cv2.imwrite('/home/p-c/Pictures/webcam/image.jpg', image)
 
 def motion_function(timeout):
    print("Motion Detected")

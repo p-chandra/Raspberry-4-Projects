@@ -11,16 +11,18 @@ from picamera2 import Picamera2, Preview
 picam = Picamera2()
 
 #config = picam.create_preview_configuration()		#Default config
-config = picam.create_preview_configuration(main={"size": (1600, 1200)})	#altered config for HD
-config["transform"] = libcamera.Transform(hflip=1, vflip=1)		#verticle flip image
+config = picam.create_preview_configuration(main={"size": (2592, 1944)})	#altered config for HD
+#config["transform"] = libcamera.Transform(hflip=1, vflip=1)		        #verticle flip image
 
 picam.configure(config)		#setting configs
 
-picam.start_preview(Preview.QTGL)		#Preview config
+#picam.start_preview(Preview.QTGL)		#Preview config but only works if you have a display plugin installed.
+                                        #If you?re running this code on a headless setup, you can comment out 
+                                        #the line above and the preview will not be shown.
 
-picam.start()		#Start camera
-time.sleep(2)		#Give camera 2 seconds before capture
-picam.capture_file("test-python.jpg")		#capture can name file
+picam.start()		                    #Start camera
+time.sleep(2)		                    #Give camera 2 seconds before capture
+picam.capture_file("test-python.jpg")	#capture can name file
 
 # Creating time lapse
 #for i in range(1,10):
