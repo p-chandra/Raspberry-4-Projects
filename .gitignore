@@ -1,0 +1,10 @@
+# ignore all .env files
+.env
+
+# ignore all LOG files
+*.log
+
+# ignore images and videos
+*.jpg
+*.h264
+*.mp4

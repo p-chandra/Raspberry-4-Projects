@@ -22,7 +22,7 @@ picam.configure(config)		#setting configs
 
 picam.start()		                    #Start camera
 time.sleep(2)		                    #Give camera 2 seconds before capture
-picam.capture_file("test-python.jpg")	#capture can name file
+picam.capture_file("Raspberry-4-Projects/GPIO/images/test-python.jpg")	#capture can name file
 
 # Creating time lapse
 #for i in range(1,10):

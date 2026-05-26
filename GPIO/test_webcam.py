@@ -10,6 +10,6 @@ while True:
    if k != -1:
       break
 
-cv2.imwrite('/home/pi/testimage.jpg', image)
+cv2.imwrite('Raspberry-4-Projects/GPIO/images/testimage.jpg', image)
 cam.release()
 cv2.destroyAllWindows()
