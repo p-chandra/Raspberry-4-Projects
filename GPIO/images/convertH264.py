@@ -2,8 +2,9 @@ import subprocess
 import glob
 import os
 
-# Find all .h264 files in the current directory
-h264_files = glob.glob('*.h264')
+# Find all .h264 files in the images directory
+images_dir = os.path.dirname(os.path.abspath(__file__))
+h264_files = glob.glob(os.path.join(images_dir, '*.h264'))
 
 if not h264_files:
     print("No .h264 files found in the current directory.")
