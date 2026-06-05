@@ -34,7 +34,7 @@ try:
           picam.stop_recording()
        else:
           print("No Motion Detected")
-       time.sleep(2)  # Sleep for a short time to avoid excessive CPU usage
+       time.sleep(1)  # Sleep for a short time to avoid excessive CPU usage
 
 except KeyboardInterrupt:
     print("\nShutting down gracefully...")

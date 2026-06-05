@@ -25,9 +25,9 @@ try:
          picam.capture_file(f"Raspberry-4-Projects/GPIO/images/image_{count}.jpg")
       else:
          print("No Motion Detected")
-      time.sleep(1)  # Sleep for a short time to avoid excessive CPU usage
+      time.sleep(0.5)  # Sleep for a short time to avoid excessive CPU usage
 except KeyboardInterrupt:
    print("\nShutting down gracefully...")
-finally:    
+finally:
    pir.close()
    picam.stop()
